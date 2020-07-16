@@ -1,4 +1,4 @@
-package com.example.spring.boot.tacos;
+package com.example.spring.boot.tacos.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
