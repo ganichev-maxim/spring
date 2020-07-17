@@ -5,9 +5,12 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.util.Date;
+import java.util.List;
 
 public class Order {
-
+    private Long id;
+    private Date placedAt;
     @NotBlank(message="Name is required")
     private String name;
     @NotBlank(message="Street is required")
@@ -25,6 +28,23 @@ public class Order {
     private String ccExpiration;
     @Digits(integer=3, fraction=0, message="Invalid CVV")
     private String ccCVV;
+    private List<Taco> tacos;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getPlacedAt() {
+        return placedAt;
+    }
+
+    public void setPlacedAt(Date placedAt) {
+        this.placedAt = placedAt;
+    }
 
     public String getName() {
         return name;
@@ -90,10 +110,16 @@ public class Order {
         this.ccCVV = ccCVV;
     }
 
+    public void addDesign(Taco saved) {
+
+    }
+
     @Override
     public String toString() {
         return "Order{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", placedAt=" + placedAt +
+                ", name='" + name + '\'' +
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
@@ -102,5 +128,13 @@ public class Order {
                 ", ccExpiration='" + ccExpiration + '\'' +
                 ", ccCVV='" + ccCVV + '\'' +
                 '}';
+    }
+
+    public List<Taco> getTacos() {
+        return tacos;
+    }
+
+    public void setTacos(List<Taco> tacos) {
+        this.tacos = tacos;
     }
 }
