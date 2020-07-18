@@ -2,33 +2,52 @@ package com.example.spring.boot.tacos.model;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
 
+import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Order {
+@Entity
+@Table(name="Taco_Order")
+public class Order implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "placedAt")
     private Date placedAt;
     @NotBlank(message="Name is required")
+    @Column(name = "deliveryName")
     private String name;
     @NotBlank(message="Street is required")
+    @Column(name = "deliveryStreet")
     private String street;
     @NotBlank(message="City is required")
+    @Column(name = "deliveryCity")
     private String city;
     @NotBlank(message="State is required")
+    @Column(name = "deliveryState")
     private String state;
     @NotBlank(message="Zip code is required")
-    private String zip;
+    @Column(name = "deliveryZip")
+    private String deliveryZip;
     @CreditCardNumber(message="Not a valid credit card number")
+    @Column(name = "ccNumber")
     private String ccNumber;
     @Pattern(regexp="^(0[1-9]|1[0-2])([\\/])([1-9][0-9])$",
             message="Must be formatted MM/YY")
+    @Column(name = "ccExpiration")
     private String ccExpiration;
     @Digits(integer=3, fraction=0, message="Invalid CVV")
+    @Column(name="ccCVV")
     private String ccCVV;
-    private List<Taco> tacos;
+    @ManyToMany(targetEntity=Taco.class)
+    private List<Taco> tacos = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -78,12 +97,12 @@ public class Order {
         this.state = state;
     }
 
-    public String getZip() {
-        return zip;
+    public String getDeliveryZip() {
+        return deliveryZip;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setDeliveryZip(String deliveryZip) {
+        this.deliveryZip = deliveryZip;
     }
 
     public String getCcNumber() {
@@ -110,8 +129,13 @@ public class Order {
         this.ccCVV = ccCVV;
     }
 
-    public void addDesign(Taco saved) {
+    public void addDesign(Taco design) {
+        this.tacos.add(design);
+    }
 
+    @PrePersist
+    void placedAt() {
+        this.placedAt = new Date();
     }
 
     @Override
@@ -123,7 +147,7 @@ public class Order {
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
-                ", zip='" + zip + '\'' +
+                ", deliveryZip='" + deliveryZip + '\'' +
                 ", ccNumber='" + ccNumber + '\'' +
                 ", ccExpiration='" + ccExpiration + '\'' +
                 ", ccCVV='" + ccCVV + '\'' +

@@ -1,22 +1,35 @@
 package com.example.spring.boot.tacos.model;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Taco {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "createdAt")
     private Date createdAt;
 
     @Size(min=1, message="You must choose at least 1 ingredient")
+    @ManyToMany(targetEntity=Ingredient.class)
+    @JoinTable(name = "Taco_Ingredients",
+                joinColumns = @JoinColumn(name = "taco" ,referencedColumnName = "id"),
+                inverseJoinColumns = @JoinColumn(name = "ingredient", referencedColumnName = "id"))
     List<Ingredient> ingredients;
 
     @NotNull
     @Size(min=5, message="Name must be at least 5 characters long")
     String name;
+
+    @PrePersist
+    void createdAt() {
+        this.createdAt = new Date();
+    }
 
     public Long getId() {
         return id;

@@ -12,6 +12,6 @@ public class TacoConverter implements Converter<String, Ingredient> {
     IngredientRepository ingredientRepository;
     @Override
     public Ingredient convert(String id) {
-        return ingredientRepository.findOne(id);
+        return ingredientRepository.findById(id).orElse(null);
     }
 }
