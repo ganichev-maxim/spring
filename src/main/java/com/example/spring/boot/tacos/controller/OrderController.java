@@ -1,8 +1,11 @@
 package com.example.spring.boot.tacos.controller;
 
 import com.example.spring.boot.tacos.model.Order;
+import com.example.spring.boot.tacos.model.User;
 import com.example.spring.boot.tacos.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/orders")
@@ -36,10 +40,11 @@ public class OrderController {
 
     @PostMapping
     public String processOrder(@Valid Order order, Errors errors,
-                               SessionStatus sessionStatus) {
+                               SessionStatus sessionStatus, @AuthenticationPrincipal User user) {
         if (errors.hasErrors()) {
             return "orderForm";
         }
+        order.setUser(user);
         orderRepo.save(order);
         sessionStatus.setComplete();
         return "redirect:/";

@@ -48,6 +48,9 @@ public class Order implements Serializable {
     private String ccCVV;
     @ManyToMany(targetEntity=Taco.class)
     private List<Taco> tacos = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Long getId() {
         return id;
@@ -160,5 +163,13 @@ public class Order implements Serializable {
 
     public void setTacos(List<Taco> tacos) {
         this.tacos = tacos;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

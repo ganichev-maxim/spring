@@ -3,6 +3,7 @@ delete from Taco_Ingredients;
 delete from Taco;
 delete from Taco_Order;
 delete from Ingredient;
+delete from User;
 insert into Ingredient (id, name, type)
 values ('FLTO', 'Flour Tortilla', 'WRAP');
 insert into Ingredient (id, name, type)
@@ -23,3 +24,6 @@ insert into Ingredient (id, name, type)
 values ('SLSA', 'Salsa', 'SAUCE');
 insert into Ingredient (id, name, type)
 values ('SRCR', 'Sour Cream', 'SAUCE');
+
+insert into user (city, fullname, password, phoneNumber, state, street, username, zip)
+values ('Город', 'Имя', 'e54eadd13410fa6447397c0e00087bf67e9995e1f886acad63deac2afe41ed040231caedef76ade0', 'Телефон', 'стейт', 'улица', 'test', 'индекс')
