@@ -26,4 +26,22 @@ insert into Ingredient (id, name, type)
 values ('SRCR', 'Sour Cream', 'SAUCE');
 
 insert into user (city, fullname, password, phoneNumber, state, street, username, zip)
-values ('Город', 'Имя', 'e54eadd13410fa6447397c0e00087bf67e9995e1f886acad63deac2afe41ed040231caedef76ade0', 'Телефон', 'стейт', 'улица', 'test', 'индекс')
+values ('Город', 'Имя', 'e54eadd13410fa6447397c0e00087bf67e9995e1f886acad63deac2afe41ed040231caedef76ade0', 'Телефон', 'стейт', 'улица', 'test', 'индекс');
+
+insert into Taco (name, createdAt)
+values ('Тестовое тако', CURRENT_TIMESTAMP());
+
+insert into Taco_Ingredients(taco, ingredient)
+values (1, 'FLTO');
+
+insert into Taco_Ingredients(taco, ingredient)
+values (1, 'GRBF');
+
+insert into Taco_Order (deliveryName, deliveryStreet, deliveryCity,
+    deliveryState, deliveryZip, ccNumber,
+    ccExpiration, ccCVV, placedAt,
+    user_id)
+values ('deliveryName имя', 'улица', 'город', '11', '111111', '4111111111111111', '10/10', '123', CURRENT_TIMESTAMP(), 1);
+
+insert into Taco_Order_Tacos (tacoOrder, taco)
+values  (1, 1);

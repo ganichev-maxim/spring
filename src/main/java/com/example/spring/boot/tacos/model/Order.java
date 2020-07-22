@@ -23,16 +23,16 @@ public class Order implements Serializable {
     private Date placedAt;
     @NotBlank(message="Name is required")
     @Column(name = "deliveryName")
-    private String name;
+    private String deliveryName;
     @NotBlank(message="Street is required")
     @Column(name = "deliveryStreet")
-    private String street;
+    private String deliveryStreet;
     @NotBlank(message="City is required")
     @Column(name = "deliveryCity")
-    private String city;
+    private String deliveryCity;
     @NotBlank(message="State is required")
     @Column(name = "deliveryState")
-    private String state;
+    private String deliveryState;
     @NotBlank(message="Zip code is required")
     @Column(name = "deliveryZip")
     private String deliveryZip;
@@ -68,36 +68,36 @@ public class Order implements Serializable {
         this.placedAt = placedAt;
     }
 
-    public String getName() {
-        return name;
+    public String getDeliveryName() {
+        return deliveryName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDeliveryName(String name) {
+        this.deliveryName = name;
     }
 
-    public String getStreet() {
-        return street;
+    public String getDeliveryStreet() {
+        return deliveryStreet;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setDeliveryStreet(String street) {
+        this.deliveryStreet = street;
     }
 
-    public String getCity() {
-        return city;
+    public String getDeliveryCity() {
+        return deliveryCity;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setDeliveryCity(String city) {
+        this.deliveryCity = city;
     }
 
-    public String getState() {
-        return state;
+    public String getDeliveryState() {
+        return deliveryState;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setDeliveryState(String state) {
+        this.deliveryState = state;
     }
 
     public String getDeliveryZip() {
@@ -146,10 +146,10 @@ public class Order implements Serializable {
         return "Order{" +
                 "id=" + id +
                 ", placedAt=" + placedAt +
-                ", name='" + name + '\'' +
-                ", street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
+                ", name='" + deliveryName + '\'' +
+                ", street='" + deliveryStreet + '\'' +
+                ", city='" + deliveryCity + '\'' +
+                ", state='" + deliveryState + '\'' +
                 ", deliveryZip='" + deliveryZip + '\'' +
                 ", ccNumber='" + ccNumber + '\'' +
                 ", ccExpiration='" + ccExpiration + '\'' +
