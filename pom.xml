@@ -12,6 +12,7 @@
     <modules>
         <module>tacos</module>
         <module>tacos-integration</module>
+        <module>eureka</module>
     </modules>
 
 </project>

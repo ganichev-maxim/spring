@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ingredient Details</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    ID
+                </td>
+                <td>
+                    <span th:text="${ingredient.id}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Имя
+                </td>
+                <td>
+                    <span th:text="${ingredient.name}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Тип
+                </td>
+                <td>
+                    <span th:text="${ingredient.type}"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+<body>
+</body>
