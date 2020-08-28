@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/design", "/orders")
             .hasRole("USER")
             .antMatchers("/", "/**").permitAll()
+            .and().csrf().ignoringAntMatchers("/actuator/**")
             .and()
             .formLogin()
                 .loginPage("/login")
