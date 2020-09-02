@@ -17,3 +17,9 @@ http://localhost:8761/
 http://localhost:8080/rest/design/recent
 http://localhost:8080/ingredients/FLTO
 
+curl localhost:8080/actuator/refresh -X POST
+
+http://localhost:7979/hystrix
+http://localhost:8989/turbine.stream
+http://localhost:8080/actuator/hystrix.stream
+
